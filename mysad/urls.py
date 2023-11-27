@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from parents.views import schedule_view
+from mentors.views import reminder_set
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('schedule/', schedule_view, name='schedule')
+    path('schedule/', schedule_view, name='schedule'),
+    path('reminder/', reminder_set, name='reminder')
 ]

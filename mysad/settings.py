@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'parents',
     'mentors',
+    'bootstrap_datepicker_plus',
+    'bootstrap4'
 ]
 
 MIDDLEWARE = [
@@ -79,11 +82,11 @@ WSGI_APPLICATION = 'mysad.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
+        'NAME': 'main',
+        'USER': 'mkh',
         'PASSWORD': '8150',
         'HOST': 'localhost',
-        'PORT': '5434'
+        'PORT': '5432'
     }
 }
 
@@ -117,6 +120,8 @@ TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
 
 USE_TZ = True
+
+UZE_L1ON = False
 
 
 # Static files (CSS, JavaScript, Images)
