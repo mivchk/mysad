@@ -6,8 +6,8 @@ class Mentor(models.Model):
     mentor_id = models.AutoField(primary_key=True)
     mentor_name = models.CharField(max_length=100)
     professional_grade = models.CharField(max_length=100)
-    username = models.CharField(max_length=20, default=models.SET_NULL)
-    password = models.CharField(max_length=20, default=models.SET_NULL)
+    username = models.CharField(max_length=20, default=models.SET_NULL, null=True)
+    password = models.CharField(max_length=20, default=models.SET_NULL, null=True)
 
 
 class Group(models.Model):
@@ -24,10 +24,11 @@ class Reminders(models.Model):
 
 class Attendance(models.Model):
     attendance_id = models.AutoField(primary_key=True)
-    today_date = models.DateField()
-    child_id = models.ForeignKey('Child', on_delete=models.CASCADE)
+    today_date = models.DateField(default=datetime.today)
+    child = models.ForeignKey('Child', on_delete=models.CASCADE)
     is_arrived = models.BooleanField(default=False)
-    mentor_id = models.ForeignKey('Mentor', on_delete=models.CASCADE)
+    mentor = models.ForeignKey('Mentor', on_delete=models.CASCADE)
+    child_name = models.CharField(max_length=100, null=True)
 
 
 class Child(models.Model):
