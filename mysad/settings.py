@@ -82,8 +82,8 @@ WSGI_APPLICATION = 'mysad.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'main',
-        'USER': 'mkh',
+        'NAME': 'postgres',
+        'USER': 'postgres',
         'PASSWORD': '8150',
         'HOST': 'localhost',
         'PORT': '5432'

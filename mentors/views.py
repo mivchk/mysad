@@ -27,8 +27,8 @@ def attendance_set(request, child_id):
     
 
 # def get_group(request):
-    groups = Group.objects.values_list('group_id')
-    return render(request, 'group_list.html', {'list': groups[0]})
+#     groups = Group.objects.values_list('group_id')
+#     return render(request, 'group_list.html', {'list': groups[0]})
 
 
 def get_group(request):
@@ -41,8 +41,19 @@ def get_group(request):
 
 
 def get_child(request, group_number):
-    children = Child.objects.filter(group_id_id=group_number).values_list('child_name', flat=True)
-    return render(request, 'show_kids.html', {'children': children})
+    children = Child.objects.filter(group_id_id=group_number)
+    for child in children:
+        if child.child_id in Attendance.objects.values_list('child_id', flat=True):
+            att = Attendance.objects.all()
+            return render(request, 'show_kids.html', {'children': att})
+        else:
+            Attendance.objects.create(
+                child_id=child.child_id,
+                mentor_id=1,
+                child_name=child.child_name
+            )
+    att = Attendance.objects.all()
+    return render(request, 'show_kids.html', {'children': att})
 
 
 def show_prepod(request, prepod):
@@ -51,3 +62,7 @@ def show_prepod(request, prepod):
 
 def navbar(request):
     return render(request, 'bebra.html')
+
+
+def copy_children(request):
+    children

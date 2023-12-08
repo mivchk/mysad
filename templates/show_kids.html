@@ -8,9 +8,9 @@
 <body>
     <h1>Дети из выбранной группы:</h1>
     <ol>
-        {% for name in children %}
+        {% for child in children %}
         <li>
-            {{name}}
+            {{child.child_name}} {{child.is_arrived}}
         </li>
         {%endfor%}
     </ol>
