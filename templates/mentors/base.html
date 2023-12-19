@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style type="text/css">
+        .sidenav {
+            height: 100%;
+            width: 160px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .sidenav a {
+			padding:6px 8px 6px 16px;
+			text-decoration: none;
+			font-size:17px;
+			color: #818181;
+			display:block;
+		}
+ 
+		.sidenav a:hover{
+			color:#f1f1f1;
+		}	
+ 
+		.main{
+			margin-left:160px;
+			padding: 0px 10px;
+		}
+
+        div {text-align: center;}
+        h1 {text-align: center;}
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Мой сад{% endblock title %}</title>
+</head>
+<body>
+
+    <div class="sidenav">
+        <a href="{% url 'get_group' %}">Посещаемость</a>
+        <a href="{% url 'm_reminder' %}">Напоминания</a>
+    </div>
+
+    <h1>{% block header %}{% endblock header %}</h1>
+    <div>{% block content%}{% endblock content %}</div>
+    <div>МойСад. 2023. All rights reserved.</div>
+    
+</body>
+</html>

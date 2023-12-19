@@ -1,0 +1,20 @@
+{% extends "mentors/base.html" %}
+{% block header %}Выберите группу{% endblock header %}
+{% block content %}
+<form method="post" id="groupForm" action="{% url 'get_child' 0%}">
+    {% csrf_token %}
+    <select name="id_groups" id="id_groups">
+        {% for g in group %}
+        <option value="{{g}}">{{g}}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" onclick="submitForm()">Показать детей</button>
+</form>
+
+<script>
+    function submitForm() {
+        document.getElementById("groupForm").action = "{% url 'get_child' 0 %}".replace('0', document.getElementById("id_groups").value);
+        document.getElementById("groupForm").submit();
+    }
+</script>
+{% endblock content %}

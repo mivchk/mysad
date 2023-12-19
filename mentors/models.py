@@ -27,7 +27,7 @@ class Attendance(models.Model):
     today_date = models.DateField(default=datetime.today)
     child = models.ForeignKey('Child', on_delete=models.CASCADE)
     is_arrived = models.BooleanField(default=False)
-    mentor = models.ForeignKey('Mentor', on_delete=models.CASCADE)
+    group = models.ForeignKey('Group', on_delete=models.CASCADE, null=True)
     child_name = models.CharField(max_length=100, null=True)
 
 

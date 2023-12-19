@@ -16,11 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from parents.views import schedule_view
-from mentors.views import reminder_set, attendance_set
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', include('parents.urls')),
-    path('mentors/', include('mentors.urls'))
+    path('mentors/', include('mentors.urls')),
+    path('admin/', admin.site.urls),
 ]

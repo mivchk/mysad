@@ -1,0 +1,18 @@
+{% extends "mentors/base.html" %}
+{% block header %}Посещаемость{% endblock header %}
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  <ul>
+    {% for child in children %}
+    <li>
+      <label>
+        <input type="checkbox" name="{{ child.attendance_id }}" {% if child.is_arrived %}checked{% endif %}>
+        {{ child.child.child_name }}
+      </label>
+    </li>
+    {% endfor %}
+  </ul>
+  <button type="submit">Отправить</button>
+</form>
+{% endblock content %}
