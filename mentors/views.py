@@ -2,9 +2,11 @@ from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
 from .forms import ReminderForm, AttendanceForm, GroupForm
 from .models import Child, Attendance, Group
 import datetime as dt
+from django.contrib.auth.decorators import login_required
 
 
 # Эта вьюшка для создания напоминаний воспитателями
+@login_required
 def reminder_view(request):
     if request.method == 'POST':
         form = ReminderForm(request.POST)
@@ -16,6 +18,7 @@ def reminder_view(request):
 
 
 # На эту вьюшку перекидывает, чтобы проставить посещаемость с вьюшки "get_group"
+@login_required
 def mark_attendance_view(request, group_number):
 
     children = Child.objects.filter(group_id_id=group_number)
@@ -44,6 +47,7 @@ def mark_attendance_view(request, group_number):
 
 
 # На этой вьюшке ты выбираешь группу, по которой будешь выставлять посещаемость
+@login_required
 def get_group_view(request):
     # if request.method == 'POST':
     #     group_number = request.POST.get('group_number')

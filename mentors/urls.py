@@ -9,5 +9,4 @@ urlpatterns = [
     # path('child_list/<int:group_number>/', get_child, name='get_child'),
     # path('hello_prep/<prepod>/', show_prepod),
     # path('navbar/', navbar),
-    # path('', include('django.contrib.auth.urls')),
 ]
