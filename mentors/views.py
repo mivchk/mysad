@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 # Эта вьюшка для создания напоминаний воспитателями
 @login_required
-def reminder_view(request):
+def reminder_view(request): 
     if request.method == 'POST':
         form = ReminderForm(request.POST)
         if form.is_valid():
@@ -20,21 +20,24 @@ def reminder_view(request):
 # На эту вьюшку перекидывает, чтобы проставить посещаемость с вьюшки "get_group"
 @login_required
 def mark_attendance_view(request, group_number):
-
+    today = dt.date.today()
     children = Child.objects.filter(group_id_id=group_number)
-    today = str(dt.date.today())
-    dates = [str(i) for i in Attendance.objects.filter(group_id=group_number).values_list('today_date', flat=True).distinct()]
-    for child in children:
-        if today in dates:
-            continue
-        else:
+    
+    # Check if attendance for today already exists
+    attendance_exists = Attendance.objects.filter(group_id=group_number, today_date=today).exists()
+
+    if not attendance_exists:
+        # Create attendance entries for children who haven't been marked for today
+        for child in children:
             Attendance.objects.create(
                 child_id=child.child_id,
                 group_id=group_number,
-                child_name=child.child_name
+                child_name=child.child_name,
+                today_date=today
             )
 
     children = Attendance.objects.filter(group_id=group_number, today_date=today)
+
     if request.method == 'POST':
         for child in children:
             is_arrived = request.POST.get(str(child.attendance_id), False)
@@ -42,6 +45,7 @@ def mark_attendance_view(request, group_number):
             child.save()
 
     return render(request, 'mentors/mark_attendance_temp.html', {'children': children})
+
 
 
 # На этой вьюшке ты выбираешь группу, по которой будешь выставлять посещаемость

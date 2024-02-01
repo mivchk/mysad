@@ -34,6 +34,16 @@
         div {text-align: center;}
         h1 {text-align: center;}
 
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #111;
+            color: #818181;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +58,9 @@
 
     <h1>{% block header %}{% endblock header %}</h1>
     <div>{% block content%}{% endblock content %}</div>
-    <div>МойСад. 2023. All rights reserved.</div>
     
+    <footer>МойСад. 2023. All rights reserved.</footer>
+
+
 </body>
 </html>

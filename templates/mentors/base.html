@@ -15,29 +15,65 @@
         }
 
         .sidenav a {
-			padding:6px 8px 6px 16px;
-			text-decoration: none;
-			font-size:17px;
-			color: #818181;
-			display:block;
-		}
- 
-		.sidenav a:hover{
-			color:#f1f1f1;
-		}	
- 
-		.main{
-			margin-left:160px;
-			padding: 0px 10px;
-		}
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            color: #818181;
+            display: block;
+        }
 
-        div {text-align: center;}
-        h1 {text-align: center;}
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
 
+        .main-content {
+            margin-left: 160px;
+            padding: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        select, button {
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        div {
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #111;
+            color: #818181;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Мой сад{% endblock title %}</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'path/to/favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
 
@@ -46,9 +82,12 @@
         <a href="{% url 'm_reminder' %}">Напоминания</a>
     </div>
 
-    <h1>{% block header %}{% endblock header %}</h1>
-    <div>{% block content%}{% endblock content %}</div>
-    <div>МойСад. 2023. All rights reserved.</div>
+    <div class="main-content">
+        <h1>{% block header %}{% endblock header %}</h1>
+        <div>{% block content %}{% endblock content %}</div>
+    </div>
+
+    <footer>МойСад. 2023. All rights reserved.</footer>
     
 </body>
 </html>
