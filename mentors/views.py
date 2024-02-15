@@ -3,6 +3,11 @@ from .forms import ReminderForm, AttendanceFormFormSet
 from .models import *
 import datetime as dt
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+
+
+def main_view(request):
+    return render(request, 'mentors/main_page.html')
 
 
 # Эта вьюшка для создания напоминаний воспитателями
@@ -49,4 +54,7 @@ def mark_attendance_view(request, group_number):
 @login_required
 def get_group_view(request):
     group = Group.objects.values_list('group_id', flat=True)
+    if request.method == 'POST':
+        group_number = request.POST.get('group_number')
+        return redirect(reverse('get_child', kwargs={'group_number': group_number}))
     return render(request, 'mentors/get_group_temp.html', {'group': group})

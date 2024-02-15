@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9l%9p^9fqg_@#-)u1&49n!e-$d8wm&lpq1h7p24g(f*8odmpme'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'parents',
     'mentors',
+    'start_page',
     'bootstrap_datepicker_plus',
-    'bootstrap4'
+    'bootstrap4',
+
 ]
 
 MIDDLEWARE = [

@@ -2,21 +2,21 @@
 {% block title %}Выбор группы{% endblock title %}
 {% block header %}Выберите группу{% endblock header %}
 {% block content %}
-<form method="get" id="groupForm" action="{% url 'get_child' 0%}">
+<form method="post" id="groupForm" action="{% url 'get_group' %}">
     {% csrf_token %}
-    <select name="id_groups" id="id_groups">
+    <select name="group_number" id="id_group">
         {% for g in group %}
         <option value="{{g}}">{{g}}</option>
         {%endfor%}
     </select>
-    <button type="submit" onclick="submitForm()">Показать детей</button>
+    <button type="submit" >Показать детей</button>
 </form>
 
-<script>
+<!-- <script>
     function submitForm() {
-        document.getElementById("groupForm").action = "{% url 'get_child' 0 %}".replace('0', document.getElementById("id_groups").value);
+        document.getElementById("groupForm").action = "{% url 'get_child' 0 %}".replace('0', document.getElementById("id_group").value);
         document.getElementById("groupForm").submit();
     }
-</script>
+</script> onclick="submitForm()" -->
 
 {% endblock content %}
