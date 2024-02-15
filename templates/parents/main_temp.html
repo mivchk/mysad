@@ -1,0 +1,5 @@
+{% extends "parents/base.html" %}
+{% block color %}red{% endblock color %}
+{% block child_surname %}{{surname.child_surname}}{% endblock child_surname %}
+{% block child_action %}{{schedule.name}}{% endblock child_action %}
+{% block mentors_remidner %}{{reminder.message}} к {{reminder.deadline}}{% endblock mentors_remidner %}

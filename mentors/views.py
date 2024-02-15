@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
-from .forms import ReminderForm, AttendanceForm, GroupForm
-from .models import Child, Attendance, Group
+from .forms import ReminderForm, AttendanceFormFormSet
+from .models import *
 import datetime as dt
 from django.contrib.auth.decorators import login_required
 
@@ -25,9 +25,7 @@ def mark_attendance_view(request, group_number):
     
     # Check if attendance for today already exists
     attendance_exists = Attendance.objects.filter(group_id=group_number, today_date=today).exists()
-
     if not attendance_exists:
-        # Create attendance entries for children who haven't been marked for today
         for child in children:
             Attendance.objects.create(
                 child_id=child.child_id,
@@ -36,15 +34,14 @@ def mark_attendance_view(request, group_number):
                 today_date=today
             )
 
-    children = Attendance.objects.filter(group_id=group_number, today_date=today)
-
+    children2 = Attendance.objects.filter(group_id=group_number, today_date=today)
     if request.method == 'POST':
-        for child in children:
-            is_arrived = request.POST.get(str(child.attendance_id), False)
+        for child in children2:
+            is_arrived = request.POST.get(str(child.attendance_id))
             child.is_arrived = is_arrived == 'on'
             child.save()
 
-    return render(request, 'mentors/mark_attendance_temp.html', {'children': children})
+    return render(request, 'mentors/mark_attendance_temp.html', {'children': children2})
 
 
 

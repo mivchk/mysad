@@ -1,66 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <style type="text/css">
-        .sidenav {
-            height: 100%;
-            width: 160px;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #111;
-            overflow-x: hidden;
-            padding-top: 20px;
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
         }
 
-        .sidenav a {
-			padding:6px 8px 6px 16px;
-			text-decoration: none;
-			font-size:17px;
-			color: #818181;
-			display:block;
-		}
- 
-		.sidenav a:hover{
-			color:#f1f1f1;
-		}	
- 
-		.main{
-			margin-left:160px;
-			padding: 0px 10px;
-		}
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 50%;
+            margin: 0 auto;
+        }
 
-        div {text-align: center;}
-        h1 {text-align: center;}
+        .main-container {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .first {
+            padding-top: 10px;
+            padding-bottom: 5px;
+        }
 
         footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #111;
-            color: #818181;
+            color: white;
+            background-color: black;
             position: fixed;
+            right: 0;
             bottom: 0;
+            text-align: center;
             width: 100%;
         }
 
+        .child-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .circle {
+            width: 20px;
+            height: 20px;
+            background-color: {% block color %}{% endblock color %};
+            border-radius: 50%;
+            margin-right: 10px;
+        }
     </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Мой сад{% endblock title %}</title>
+    <title>Мой сад.Родители</title>
 </head>
+
 <body>
+    <header>
+        <div class="header-content">
+            <div class="child-info">
+                <div class="circle"></div>
+                <h1>{% block child_surname %}{% endblock child_surname %}</h1>
+            </div>
+            <a href="/accounts/logout">Выйти</a>
+        </div>
+    </header> 
 
-    <div class="sidenav">
-        <a href="{% url 'schedule' %}">Расписание</a>
-        <a href="{% url 'p_reminder' %}">Напоминания</a>
-    </div>
+    <main>
+        <div class="main-container">
+            <div class="first">
+                <h2>Сейчас:</h2>
+                <p>{% block child_action %}{% endblock child_action %}</p>
+            </div>
+            <div>
+                <h2>Напоминания:</h2>
+                <p>{% block mentors_remidner %}{% endblock mentors_remidner %}</p>
+            </div>
+        </div>
+    </main>
 
-    <h1>{% block header %}{% endblock header %}</h1>
-    <div>{% block content%}{% endblock content %}</div>
-    
-    <footer>МойСад. 2023. All rights reserved.</footer>
-
-
+    <footer>
+        <p>Moi-sad@2024</p>
+    </footer>
 </body>
+
 </html>

@@ -1,12 +1,13 @@
 {% extends "mentors/base.html" %}
 {% block title %}Напоминания{% endblock title %}
-{% block header %}Новое напоминание{% endblock header %}
+{% block header %}Уведомить{% endblock header %}
 {% block content %}
-<form method="post">
-  {% csrf_token %}
-  {% for f in form %}
-  {{f}}<br><br>
-  {% endfor %}
-  <input type="submit" value="Отправить">
-</form>
+<div class="main-container">
+  <form action="{% url 'm_reminder' %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Отправить</button>
+  </form>
+</div>
+
 {% endblock content %}

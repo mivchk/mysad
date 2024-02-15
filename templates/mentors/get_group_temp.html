@@ -1,7 +1,8 @@
 {% extends "mentors/base.html" %}
+{% block title %}Выбор группы{% endblock title %}
 {% block header %}Выберите группу{% endblock header %}
 {% block content %}
-<form method="post" id="groupForm" action="{% url 'get_child' 0%}">
+<form method="get" id="groupForm" action="{% url 'get_child' 0%}">
     {% csrf_token %}
     <select name="id_groups" id="id_groups">
         {% for g in group %}
@@ -17,4 +18,5 @@
         document.getElementById("groupForm").submit();
     }
 </script>
+
 {% endblock content %}
