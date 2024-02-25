@@ -28,7 +28,6 @@ def mark_attendance_view(request, group_number):
     today = dt.date.today()
     children = Child.objects.filter(group_id_id=group_number)
     
-    # Check if attendance for today already exists
     attendance_exists = Attendance.objects.filter(group_id=group_number, today_date=today).exists()
     if not attendance_exists:
         for child in children:
